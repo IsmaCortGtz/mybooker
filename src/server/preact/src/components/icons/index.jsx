@@ -1,0 +1,10 @@
+export { default as Home } from '@/components/icons/Home';
+export { default as Settings } from '@/components/icons/Settings';
+export { default as Extensions } from '@/components/icons/Extensions';
+export { default as Dots } from '@/components/icons/Dots';
+export { default as Heart } from '@/components/icons/Heart';
+export { default as Book } from '@/components/icons/Book';
+export { default as Download } from '@/components/icons/Download';
+export { default as Close } from '@/components/icons/Close';
+export { default as SelectAll } from '@/components/icons/SelectAll';
+export { default as Deselect } from '@/components/icons/Deselect';

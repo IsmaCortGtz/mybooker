@@ -1,0 +1,27 @@
+a.header-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--surface-2);
+  border: 1px solid var(--on-surface-2);
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+a.header-button:hover {
+  background-color: #3f3f3f;
+}
+
+a.header-button:active {
+  background-color: #292929;
+}
+
+div.dropdown-button-container {
+  position: relative;
+  display: inline-block;
+}

@@ -1,0 +1,71 @@
+div.book-tab-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+}
+
+p.book-tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  user-select: none;
+  cursor: pointer;
+  border-bottom: 3px solid var(--on-surface);
+  border-radius: 5px 5px 0 0;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+p.book-tab-item:hover {
+  background-color: var(--surface);
+}
+
+p.book-tab-item[active] {
+  color: var(--active);
+  border-color: var(--active);
+}
+
+dialog::backdrop {
+  background-image: linear-gradient(
+    45deg,
+    magenta,
+    rebeccapurple,
+    dodgerblue,
+    green
+  );
+  opacity: 0.75;
+}
+
+
+
+/* Create book styles */
+div.ceate-book-cover-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+div.create-book-cover-inputs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+img.create-book-cover {
+  background-color: var(--on-surface);
+  width: 150px;
+  aspect-ratio: 5/8;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 2px solid var(--on-surface);
+}
+
+p.create-book-chapters-info {
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}

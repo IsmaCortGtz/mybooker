@@ -1,0 +1,36 @@
+header.Header-Component {
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--on-surface);
+}
+
+h1.Header-Component-title {
+  flex: 1;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  user-select: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+div.Header-Component-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+@media screen and (max-width: 340px) {
+  h1.Header-Component-title {
+    display: none;
+  }
+
+  div.Header-Component-buttons-container {
+    margin: 0;
+    flex: 1;
+  }
+}

@@ -1,0 +1,44 @@
+:root {
+  --background-color: #222222;
+  --text-color: #dedede;
+  --text-color-surface: rgba(222, 222, 222, 0.2);
+
+  --surface: #292929;
+  --on-surface: #4b4b4b;
+
+  --surface-2: #313131;
+  --on-surface-2: #4b4b4b;
+  --hover-surface-2: #3f3f3f;
+  --pressed-surface-2: #292929;
+
+  --color-1: #68be68;
+  --hover-color-1: #7ce67b;
+  --pressed-color-1: #509450;
+
+  --active: rgb(178, 178, 252);
+  --active-surface: rgba(178, 178, 252, 0.2);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body, div#app {
+  overflow: hidden;
+  color-scheme: dark;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 10px;
+  overflow: scroll;
+}

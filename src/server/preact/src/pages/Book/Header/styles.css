@@ -1,0 +1,84 @@
+header.book-header {
+  position: relative;
+  color: #222222;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+
+header.book-header > img.header-cover-background {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: center;
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.15)), to(rgba(0,0,0,0)));
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0,0,0,0));
+}
+
+header.book-header > article.header-content-container {
+  position: absolute;
+  top: 50%;left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 95%;
+
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+img.header-cover {
+  background-color: var(--on-surface);
+  height: 95%;
+  aspect-ratio: 5/8;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--on-surface);
+}
+
+div.header-info-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  user-select: none;
+}
+
+p.book-state {
+  font-style: italic;
+  margin: 10px 0;
+}
+
+
+button.follow-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  width: 150px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  background-color: #83dd82;
+  color: var(--background-color);
+}
+
+button.follow-button:hover {
+  background-color: #a4e7a3;
+}
+
+button.follow-button:active {
+  background-color: #65b663;
+}
+
+button.follow-button > svg {
+  width: 15px;
+  height: 15px;
+}

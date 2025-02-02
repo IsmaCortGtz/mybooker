@@ -1,0 +1,57 @@
+div.input-component-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+label.input-component-label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+span.input-component-required {
+  color: red;
+  padding-left: 5px;
+}
+
+input.input-component-input {
+  padding: 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--on-surface);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+}
+
+input.input-component-input:focus {
+  border-color: var(--active);
+}
+
+
+/* Submit button styles */
+button.input-button-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-1);
+  color: var(--background-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.input-button-submit:hover {
+  background-color: var(--hover-color-1);
+}
+
+button.input-button-submit:active {
+  background-color: var(--pressed-color-1);
+}

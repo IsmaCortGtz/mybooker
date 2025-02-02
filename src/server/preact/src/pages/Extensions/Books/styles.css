@@ -1,0 +1,23 @@
+main > section.extension-books-header {
+    --background-color: #dedede;
+    color: #222222;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    background-image: linear-gradient(to bottom, var(--background-color), var(--background-color), #222);
+}
+
+main > section.extension-books-header > img {
+    width: 50%;
+    margin: 0 auto;
+    aspect-ratio: 4/1;
+}
+
+main > section.extension-books-header > h3 {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+    font-size: 3rem;
+    font-weight: bolder;
+    user-select: none;
+}

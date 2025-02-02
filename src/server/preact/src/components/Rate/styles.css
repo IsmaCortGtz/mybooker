@@ -1,0 +1,12 @@
+div.rate-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+span.rate-text {
+  margin-left: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  font-style: italic;
+}
