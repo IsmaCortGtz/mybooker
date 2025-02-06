@@ -1,4 +1,4 @@
-export const apiURL = "http://192.168.50.140:34567";
+export const apiURL = "http://localhost:34567";
 
 export function get(url) {
   return fetch(`${apiURL}${url}`).then((response) => response.json());
