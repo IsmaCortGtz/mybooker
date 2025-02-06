@@ -8,6 +8,7 @@
         "cheerio": "^1.0.0",
         "hono": "^4.6.18",
         "mime-types": "^2.1.35",
+        "webview-bun": "^2.3.0",
       },
     },
   },
@@ -57,6 +58,8 @@
     "safer-buffer": ["safer-buffer@2.1.2", "", {}, "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="],
 
     "undici": ["undici@6.21.1", "", {}, "sha512-q/1rj5D0/zayJB2FraXdaWxbhWiNKDvu8naDT2dl1yTlvJp4BLtOcp2a5BvgGNQpYYJzau7tf1WgKv3b+7mqpQ=="],
+
+    "webview-bun": ["webview-bun@2.3.0", "", {}, "sha512-SYOksNzgjTajM+xhqdbhd1xzmCfDyqdmkLGSyZ5i30HRR5KTZJN6+cyE+OGCBFoPFBPmskUM3R99YXtQJqP7Qg=="],
 
     "whatwg-encoding": ["whatwg-encoding@3.1.1", "", { "dependencies": { "iconv-lite": "0.6.3" } }, "sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ=="],
 

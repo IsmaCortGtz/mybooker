@@ -25,6 +25,7 @@
     "adm-zip": "^0.5.16",
     "cheerio": "^1.0.0",
     "hono": "^4.6.18",
-    "mime-types": "^2.1.35"
+    "mime-types": "^2.1.35",
+    "webview-bun": "^2.3.0"
   }
 }

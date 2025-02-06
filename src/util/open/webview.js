@@ -1,11 +1,20 @@
-// Not working yet
+import { Webview } from "webview-bun";
+const timeout = setTimeout(() => process.exit(0), 5000);
 
-/* import { Webview } from "webview-bun";
+self.addEventListener("message", async (event) => {
+  // Check if the message is to open a webview
+  if (event.data?.type !== "open-webview") return;
+  if (!event.data.url) return;
 
-async function webview(url) {
+  // Clear the timeout
+  clearTimeout(timeout);
+  console.log("Opening webview for", event.data.url);
+
+  // Create a new webview and navigate to the URL
   const webview = new Webview();
-  webview.navigate(url);
+  webview.navigate(event.data.url);
   webview.run();
-}
 
-export default webview; */
+  // Exit the worker when the webview is closed
+  process.exit(0);
+});

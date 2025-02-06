@@ -14,7 +14,7 @@ const APP_URL = `http://localhost:${PORT}/`;
 
 // Start the web server
 import startHonoServer from "#l/server";
-startHonoServer(PORT);
+const server = startHonoServer(PORT);
 
 console.log(`Server started on ${APP_URL}`);
-open(APP_URL);
+open(APP_URL, () => server.stop());
