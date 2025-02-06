@@ -1,10 +1,10 @@
 // Dependencies
 import { Hono } from 'hono';
 import { cors } from 'hono/cors'
-import { serveStatic } from 'hono/bun';
 import { trimTrailingSlash } from 'hono/trailing-slash';
-import { get } from "#l/util/dir";
-import indexFile from './dist/index.html' with { type: "text" };
+
+// Preact imports
+import client from '#l/server/routes/client';
 
 // Hono app
 const app = new Hono();
@@ -27,8 +27,10 @@ app.route("/api/library", libraryRouter);
 app.route("/api/files", filesRouter);
 
 // Preact Frontend
-app.use('*', serveStatic({ root: get("src/server/dist") }));
-app.notFound((c) => c.html(indexFile));
+app.get("/", client.html);
+app.get("/assets/index.css", client.css);
+app.get("/assets/index.js", client.js);
+app.notFound(client.html);
 
 // Start server
 export default (port) => Bun.serve({
