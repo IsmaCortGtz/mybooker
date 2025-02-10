@@ -1,5 +1,4 @@
 import fs from "node:fs";
-import path from "node:path";
 import vm from "node:vm";
 import dir from "#l/util/dir";
 
@@ -9,10 +8,7 @@ import loadDependencies from "./src/loadDependencies";
 
 async function run(extensionName, action, ...args) {
   try {
-    const extensionJsonPath = path.resolve(
-      dir.extensions,
-      `${extensionName}/extension.json`
-    );
+    const extensionJsonPath = dir.extensions(extensionName, "extension.json");
     
     const extensionString = fs.readFileSync(extensionJsonPath);
     const extension = JSON.parse(extensionString);

@@ -15,7 +15,6 @@ const commands = () => {
 };
 
 async function browser(url) {
-  console.log(`Opening browser in ${url}`);
   const [command, args = []] = commands();
   execFileSync(command, [...args, encodeURI(url)]);
 }

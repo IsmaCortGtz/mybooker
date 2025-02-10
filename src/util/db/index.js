@@ -1,7 +1,6 @@
 import { Database } from "bun:sqlite";
-import fs from "node:fs";
-import path from "node:path";
 import dir from "#l/util/dir";
+import fs from "node:fs";
 
 import initExtensions from "./extensions/init";
 import initBooks from "./books/init";
@@ -19,9 +18,8 @@ const data = {
 // Open the database only once
 (() => {
   if (data.alreadyOpen) return;
-  if (!fs.existsSync(dir.config)) fs.mkdirSync(dir.config, { recursive: true });
-
-  const dbPath = path.join(dir.config, "config.db");
+  fs.mkdirSync(dir.config.db(), { recursive: true });
+  const dbPath = dir.config.db("config.db");
   data.db = new Database(dbPath);
   data.alreadyOpen = true;
 

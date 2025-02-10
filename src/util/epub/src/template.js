@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { get } from '#l/util/dir';
+import dir from '#l/util/dir';
 
 /* data: [
   {
@@ -18,7 +18,7 @@ export default function text(data, template = "DEFAULT") {
 
 
 export function loadTemplate(template) {
-  const templatePath = get("src", "util", "epub", 'templates', 'Text', `${template}.html`);
+  const templatePath = dir.src.util("epub", 'templates', 'Text', `${template}.html`);
   if (!fs.existsSync(templatePath)) throw new Error(`Template ${template} not found`);
   return fs.readFileSync(templatePath, 'utf-8');
 }

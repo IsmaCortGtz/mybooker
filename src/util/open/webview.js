@@ -8,7 +8,6 @@ self.addEventListener("message", async (event) => {
 
   // Clear the timeout
   clearTimeout(timeout);
-  console.log("Opening webview for", event.data.url);
 
   // Create a new webview and navigate to the URL
   const webview = new Webview();

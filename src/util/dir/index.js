@@ -1,21 +1,22 @@
 import { resolve } from "node:path";
 
-const currentDir = resolve(".");
-const APP_ROOT_PATH = resolve(currentDir);
-
+const APP_ROOT_PATH = resolve(".");
 export const get = (...paths) => (
     resolve(APP_ROOT_PATH, ...paths)
 );
 
-export const root = APP_ROOT_PATH;
-export const src = get("src");
-export const extensions = get("extensions");
-export const config = get("config");
+const dir = {
+    root: get,
+    src: (...path) => get("src", ...path),
+    extensions: (...path) => get("extensions", ...path),
+    config: (...path) => get("config", ...path)
+};
 
-export default {
-    get,
-    root,
-    src,
-    extensions,
-    config
-}
+dir.src.core = (...path) => dir.src("core", ...path);
+dir.src.server = (...path) => dir.src("server", ...path);
+dir.src.util = (...path) => dir.src("util", ...path);
+
+dir.config.cache = (...path) => dir.config("cache", ...path);
+dir.config.db = (...path) => dir.config("db", ...path);
+
+export default dir;

@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { get } from '#l/util/dir';
+import dir from '#l/util/dir';
 
 /*
 metadata = {
@@ -49,7 +49,7 @@ export function createSpine(chapters) {
 
 
 export function loadTemplate() {
-  const templatePath = get("src", "util", "epub", 'templates', `content.opf`);
+  const templatePath = dir.src.util("epub", 'templates', `content.opf`);
   if (!fs.existsSync(templatePath)) throw new Error(`Template not found`);
   return fs.readFileSync(templatePath, 'utf-8');
 }

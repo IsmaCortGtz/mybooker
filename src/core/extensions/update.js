@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import dir from "#l/util/dir";
+
 import extensionListDb from "#l/util/db/extensions/list";
 import extensionAdd from "#l/util/db/extensions/add";
 import extensionDelete from "#l/util/db/extensions/delete";
@@ -21,6 +24,7 @@ async function update() {
   // Add new extensions to db
   for (const ext of newExtensions) {
     await extensionAdd(ext.id, ext.name, ext.background, ext.foreground, ext.icon);
+    fs.mkdirSync(dir.config.cache(ext.id), { recursive: true });
   }
 
   // Remove extensions from db

@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { get } from '#l/util/dir';
+import dir from '#l/util/dir';
 
 /*
 metadata = {
@@ -41,7 +41,7 @@ export function createNavMap(chapters) {
 
 
 export function loadTemplate() {
-  const templatePath = get("src", "util", "epub", 'templates', `toc.ncx`);
+  const templatePath = dir.src.util("epub", 'templates', `toc.ncx`);
   if (!fs.existsSync(templatePath)) throw new Error(`Template not found`);
   return fs.readFileSync(templatePath, 'utf-8');
 }

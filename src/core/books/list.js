@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import dir from "#l/util/dir";
-import path from "node:path";
 import { pipeline } from "node:stream/promises";
 import mime from "mime-types";
 
@@ -49,10 +48,13 @@ async function bookAdd(extensionId, bookId, title, cover_url, state, rate) {
   const response = await fetch(cover_url);
   if (!response.ok) throw new Error("Error downloading cover");
 
+  // Create book folder
+  fs.mkdirSync(dir.config.cache(extensionId, bookId), { recursive: true });
+
+  // Save cover image
   const extension = mime.extension(response.headers.get("content-type"));
-  const random = String(Math.floor(Math.random() * 10000)).padStart(4, "0"); // Random number between 0000 and 9999
-  const filename = `${crypto.randomUUID()}-${random}.${extension}`;
-  const filepath = path.join(dir.config, `cache/${filename}`);
+  const filename = `icon.${extension}`;
+  const filepath = dir.config.cache(extensionId, bookId, filename);
 
   // Save in SQLite database
   const result = await dbAddBook(extensionId, bookId, title, filename, state, rate);

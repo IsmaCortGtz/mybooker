@@ -1,4 +1,3 @@
-import path from 'node:path';
 import fs from 'node:fs';
 import dir from "#l/util/dir";
 
@@ -6,7 +5,7 @@ import dir from "#l/util/dir";
 function isIncludeValid(includePath, extension) {
   if (!includePath || !extension) throw new Error('Invalid parameters');
 
-  const fullIncludePath = path.resolve(dir.extensions, extension, includePath);
+  const fullIncludePath = dir.extensions(extension, includePath);
   return fs.existsSync(fullIncludePath);
 }
 
@@ -19,7 +18,7 @@ function loadCode(includeString, extension) {
   try {
     if (!isIncludeValid(includeString, extension)) throw new Error('Invalid include path');
   
-    const includePath = path.resolve(dir.extensions, extension, includeString);
+    const includePath = dir.extensions(extension, includeString);
     return fs.readFileSync(includePath);
   } catch (e) { throw e; }
 }

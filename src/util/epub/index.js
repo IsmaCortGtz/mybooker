@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import AdmZip from "adm-zip";
-import { get } from "#l/util/dir";
+import dir from "#l/util/dir";
 
 import text from './src/template';
 import createOPF from "./src/opf";
@@ -21,7 +21,7 @@ export default class EPUB {
     this.zip = new AdmZip();
     this.zip.addFile("mimetype", Buffer.from("application/epub+zip"));
     this.zip.addFile("META-INF/container.xml", Buffer.from(CONTAINER_XML));
-    this.zip.addLocalFolder(get("src", "util", "epub", "templates", "Styles"), "OEBPS/Styles");
+    this.zip.addLocalFolder(dir.src.util("epub", "templates", "Styles"), "OEBPS/Styles");
   }
 
 
@@ -78,7 +78,7 @@ export default class EPUB {
     this.zip.addFile(`OEBPS/toc.ncx`, Buffer.from(createNCX(this.metadata)));
     this.zip.addFile(`OEBPS/Text/table_of_content.html`, Buffer.from(createTable(this.metadata)));
 
-    const zipPath = get("config", "out", `${this.metadata.title}_Volume ${this.metadata.number}.epub`);
+    const zipPath = dir.config("out", `${this.metadata.title}.epub`);
     this.zip.writeZip(path || zipPath);
   }
 }

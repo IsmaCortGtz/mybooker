@@ -1,13 +1,16 @@
 import fs from "node:fs";
-import dir, { get } from "#l/util/dir";
+import updateExtensions from '#l/core/extensions/update';
+import dir from "#l/util/dir";
 import open from "#l/util/open";
 
 // Check if config/ and extensions/ directories exists
-console.log("Checking directories...", dir.config, dir.extensions);
-fs.mkdirSync(dir.extensions, { recursive: true });
-fs.mkdirSync(dir.config, { recursive: true });
-fs.mkdirSync(get("config", "cache"), { recursive: true });
-fs.mkdirSync(get("config", "out"), { recursive: true });
+fs.mkdirSync(dir.extensions(), { recursive: true });
+fs.mkdirSync(dir.config(), { recursive: true });
+fs.mkdirSync(dir.config.cache(), { recursive: true });
+fs.mkdirSync(dir.config.db(), { recursive: true });
+
+// Update extensions list
+await updateExtensions();
 
 const PORT = 34567;
 const APP_URL = `http://localhost:${PORT}/`;
