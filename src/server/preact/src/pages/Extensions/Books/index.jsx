@@ -59,9 +59,6 @@ export default function Extensions({ extensionId }) {
       </Modal>
 
       <Header goBack >
-        <Button title="Mi Biblioteca" href="/" Icon={HomeIcon} />
-        <Button title="Extensiones" href="/extensions" Icon={ExtensionsIcon} />
-        <Button title="Ajustes" href="/settings" Icon={SettingsIcon} />
         <Button title="Más" Icon={DotsIcon} />
       </Header>
 

@@ -8,3 +8,5 @@ export { default as Download } from '@/components/icons/Download';
 export { default as Close } from '@/components/icons/Close';
 export { default as SelectAll } from '@/components/icons/SelectAll';
 export { default as Deselect } from '@/components/icons/Deselect';
+export { default as File } from '@/components/icons/File';
+export { default as Checks } from '@/components/icons/Checks'; 

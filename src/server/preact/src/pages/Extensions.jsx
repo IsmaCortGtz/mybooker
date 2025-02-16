@@ -2,11 +2,6 @@ import { useState, useEffect } from 'preact/hooks';
 import { apiURL } from '@/utils/API';
 
 import Header from "@/components/Header";
-import { Button } from "@/components/Header/Button";
-
-import HomeIcon from "@/components/icons/Home";
-import SettingsIcon from "@/components/icons/Settings";
-import ExtensionsIcon from "@/components/icons/Extensions";
 
 import Container from "@/components/Extensions/Container";
 import Cover from "@/components/Extensions/Cover";
@@ -23,12 +18,7 @@ export default function Extensions() {
 
   return (
     <>
-      <Header>
-        <Button title="Mi Biblioteca" href="/" Icon={HomeIcon} />
-        <Button title="Extensiones" Icon={ExtensionsIcon} />
-        <Button title="Ajustes" href="/settings" Icon={SettingsIcon} />
-      </Header>
-
+      <Header />
       <main>
         <h2>Extensiones</h2>
 

@@ -22,7 +22,7 @@ function App() {
 
       <Route path="/settings" component={Settings} />
 
-      <Route path="/book/:extensionId/:bookId" component={Chapters} />
+      <Route path="/book/:extensionId/:bookId/:pageTab*" component={Chapters} />
     </Router>
   );
 }

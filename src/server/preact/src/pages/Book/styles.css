@@ -5,7 +5,9 @@ div.book-tab-container {
   margin-top: 5px;
 }
 
-p.book-tab-item {
+a.book-tab-item {
+  color: var(--text-color);
+  text-decoration: none;
   flex: 1;
   text-align: center;
   padding: 10px;
@@ -18,11 +20,11 @@ p.book-tab-item {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-p.book-tab-item:hover {
+a.book-tab-item:hover {
   background-color: var(--surface);
 }
 
-p.book-tab-item[active] {
+a.book-tab-item[active] {
   color: var(--active);
   border-color: var(--active);
 }

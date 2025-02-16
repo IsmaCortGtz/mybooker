@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'preact/hooks';
+import { Router, route } from 'preact-router';
 import { apiURL, post } from '@/utils/API';
 
 import BookChapters from './Chapters';
+import BookFiles from './Files';
 import BookHeader from './Header';
 
-import Loader from '@/components/Loader';
 import LoaderModal from '@/components/Loader/Modal';
 import Modal from '@/components/Modal';
 import Header from "@/components/Header";
@@ -12,11 +13,11 @@ import { Button } from "@/components/Header/Button";
 import Dropdown from "@/components/Dropdown";
 import Input, { Submit } from '@/components/Input';
 
-import { Download, Book, Dots, Extensions, Settings, Home, SelectAll, Deselect } from '@/components/icons';
+import { Download, Book, Dots, SelectAll, Deselect } from '@/components/icons';
 
 import './styles.css';
 
-export default function SettingsPage({ extensionId, bookId }) {
+export default function BookPage({ pageTab, extensionId, bookId }) {
 
   const [loadingMessage, setLoadingMessage] = useState("Descargando contenido");
   const [bookInfo, setBookInfo] = useState({});
@@ -35,7 +36,6 @@ export default function SettingsPage({ extensionId, bookId }) {
       .then(res => res.json())
       .then(data => {
         clearTimeout(showModal);
-        console.log(data);
         setBookContent(data);
         loadingModal.current.close();
       });
@@ -104,18 +104,29 @@ export default function SettingsPage({ extensionId, bookId }) {
 
   return (
     <>
-      <LoaderModal 
-        innerRef={loadingModal} 
-        message={loadingMessage} 
-        type='tiny'
-        noClose 
-        noEscape  
-      />
-      
+      <LoaderModal innerRef={loadingModal} message={loadingMessage} type='tiny' noClose  noEscape />
+      <Modal innerRef={modalRef} title="Crear libro">
+        <form onSubmit={onCreateBook}>
+          <div className='ceate-book-cover-container'>
+            <img
+              class="create-book-cover"
+              src={`${apiURL}/api/books/icon/${extensionId}/${bookId}`}
+              alt={bookInfo.id}
+            />
+            <div className='create-book-cover-inputs'>
+              <Input label="Titulo" name="title" value={bookInfo.title} required />
+              <Input label="Numero" type='number' name="number" placeholder={"ex. 1"} value={1} required />
+              <p className='create-book-chapters-info'>Usando capitulos '{checkboxSelected[0]?.title}' a '{checkboxSelected[1]?.title || checkboxSelected[0]?.title}'</p>
+            </div>
+          </div>
+          <Input label="Idioma" name="language" placeholder={"ex. es-MX"} value="es" required />
+          <Input label="Creador" name="creator" value={extensionId} required />
+          <Input label="Fecha de publicación" type="date" name="date" value={(new Date()).toISOString().substring(0,10)} required />
+          <Submit label="Crear libro" Icon={Book} />
+        </form>
+      </Modal>
+
       <Header goBack >
-        <Button title="Mi Biblioteca" href="/" Icon={Home} />
-        <Button title="Extensiones" href="/extensions" Icon={Extensions} />
-        <Button title="Ajustes" href="/settings" Icon={Settings} />
         <Button title="Acción" Icon={Dots} dropdown >
             <Dropdown.Item 
               Icon={SelectAll} 
@@ -146,52 +157,20 @@ export default function SettingsPage({ extensionId, bookId }) {
         </Button>
       </Header>
 
-      <Modal innerRef={modalRef} title="Crear libro">
-        <form onSubmit={onCreateBook}>
-          <div className='ceate-book-cover-container'>
-            <img
-              class="create-book-cover"
-              src={`${apiURL}/api/books/icon/${extensionId}/${bookId}`}
-              alt={bookInfo.id}
-            />
-            <div className='create-book-cover-inputs'>
-              <Input label="Titulo" name="title" value={bookInfo.title} required />
-              <Input label="Numero" type='number' name="number" placeholder={"ex. 1"} value={1} required />
-              {
-                checkboxSelected.length === 2
-                  ? (
-                    <p className='create-book-chapters-info'>
-                      Usando capitulos '{checkboxSelected[0]?.title}' a '{checkboxSelected[1]?.title}'
-                    </p>
-                  ) : (
-                    <p className='create-book-chapters-info'>
-                      Usando capitulo '{checkboxSelected[0]?.title}'
-                    </p>
-                  )
-              }
-              
-                
-              
-            </div>
-          </div>
-          <Input label="Idioma" name="language" placeholder={"ex. es-MX"} value="es" required />
-          <Input label="Creador" name="creator" value={extensionId} required />
-          <Input label="Fecha de publicación" type="date" name="date" value={(new Date()).toISOString().substring(0,10)} required />
-          <Submit label="Crear libro" Icon={Book} />
-        </form>
-      </Modal>
-
       <main style={{ padding: "0" }}>
         <BookHeader extensionId={extensionId} bookId={bookId} bookInfo={bookInfo} />
 
         <div className='book-tab-container'>
-          <p className='book-tab-item' active >Capitulos</p>
-          <p className='book-tab-item'>
+          <a onClick={() => route(`/book/${extensionId}/${bookId}`, true)} className='book-tab-item' active={pageTab === ""} >Capitulos</a>
+          <a onClick={() => route(`/book/${extensionId}/${bookId}/files`, true)} className='book-tab-item' active={pageTab === "files"} >
             Archivos
-          </p>
+          </a>
         </div>
 
-        <BookChapters bookContent={bookContent} checkboxSelected={checkboxSelected} chapterClick={chapterClick} />
+        <Router>
+          <BookChapters path="/book/:extensionId/:bookId" bookContent={bookContent} checkboxSelected={checkboxSelected} chapterClick={chapterClick} />
+          <BookFiles path="/book/:extensionId/:bookId/files" />
+        </Router>
       </main>
     </>
   );

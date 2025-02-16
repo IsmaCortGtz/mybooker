@@ -1,0 +1,64 @@
+section.volumes-container {
+  padding: 10px;
+}
+
+summary.volume-title {
+  cursor: pointer;
+  padding: 8px;
+  font-weight: bold;
+  background-color: var(--surface);
+  border-radius: 10px;
+  margin-bottom: 2px;
+}
+
+details.chapters-container {
+  padding: 5px;
+  margin: 5px 0;
+  user-select: none;
+}
+
+details.chapters-container:not(:last-child) {
+  border-bottom: 1px solid var(--on-surface);
+}
+
+div.chapter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+}
+
+div.chapter:not(:last-child) {
+  border-bottom: 1px solid var(--on-surface);
+}
+
+div.chapter > label {
+  padding: 8px 0;
+  flex: 1;
+  cursor: pointer;
+}
+
+div.chapter > input {
+  padding: 8px 0;
+  cursor: pointer;
+  accent-color: var(--active);
+}
+
+div.chapter:has(input:checked) {
+  background-color: var(--active-surface);
+}
+
+div.chapter > input.auto-selected {
+  accent-color: var(--text-color);
+}
+
+div.chapter:has(input:checked.auto-selected) {
+  background-color: var(--text-color-surface);
+}
+
+label.chapter-date {
+  font-size: 0.9em;
+  font-style: italic;
+  color: var(--on-surface);
+  text-align: right;
+}
