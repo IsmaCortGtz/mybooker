@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
+import { viteSingleFile } from "vite-plugin-singlefile"
 import path from "path";
 import fs from "fs";
 
@@ -10,6 +11,7 @@ const newDistFolder = path.resolve(__dirname, "..", "dist");
 export default defineConfig({
   plugins: [
     preact(),
+    viteSingleFile(),
     {
       name: 'publish-dist-folder',
       closeBundle: async () => {

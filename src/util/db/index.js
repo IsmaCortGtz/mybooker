@@ -1,4 +1,4 @@
-import { Database } from "bun:sqlite";
+import Database from 'better-sqlite3';
 import fs from "node:fs";
 import dir from "#i/util/dir";
 
@@ -19,7 +19,7 @@ const data = {
 (() => {
   if (data.alreadyOpen) return;
   fs.mkdirSync(dir.config.db(), { recursive: true });
-  const dbPath = dir.config.db("config.db");
+  const dbPath = dir.config.db("config-test.db");
   data.db = new Database(dbPath);
   data.alreadyOpen = true;
 

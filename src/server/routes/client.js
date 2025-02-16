@@ -1,9 +1,8 @@
-import html from '../dist/index.html' with { type: "text" };
-import css from '../dist/assets/index.css' with { type: "text" };
-import js from '../dist/assets/index.js' with { type: "text" };
+import fs from 'node:fs';
+import dir from '#i/util/dir';
 
-export default {
-  html: (c) => c.html(html),
-  css: (c) => c.body(css, 200, { "Content-Type": "text/css" }),
-  js: (c) => c.body(js, 200, { "Content-Type": "text/javascript" }),
+const htmlString = fs.readFileSync(dir.src.server('dist/index.html'), 'utf8');
+
+export default function clien(c) {
+  return c.html(htmlString);
 }

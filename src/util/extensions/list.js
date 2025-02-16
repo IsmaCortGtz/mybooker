@@ -12,7 +12,7 @@ async function list() {
   
   return await Promise.all(
     direntsFiltered.map(async (fileDIr) => {
-      const extension = await import(dir.extensions(fileDIr.name, "extension.json"), { assert: { type: "json" } });
+      const extension = (await import(dir.extensions(fileDIr.name, "extension.json"), { with: { type: "json" } })).default;
       return { 
         id: fileDIr.name, 
         name: extension.name, 

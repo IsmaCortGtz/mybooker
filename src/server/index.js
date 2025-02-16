@@ -1,5 +1,6 @@
 // Dependencies
 import { Hono } from 'hono';
+import { serve } from '@hono/node-server'
 import { cors } from 'hono/cors'
 import { trimTrailingSlash } from 'hono/trailing-slash';
 
@@ -27,14 +28,11 @@ app.route("/api/library", libraryRouter);
 app.route("/api/files", filesRouter);
 
 // Preact Frontend
-app.get("/", client.html);
-app.get("/assets/index.css", client.css);
-app.get("/assets/index.js", client.js);
-app.notFound(client.html);
+app.get("/", client);
+app.notFound(client);
 
 // Start server
-export default (port) => Bun.serve({
+export default (port) => serve({
   fetch: app.fetch,
   port: port,
-  idleTimeout: 255,
 });

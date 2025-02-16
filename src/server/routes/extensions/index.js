@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 
-import list from "./list";
-import update from "./update";
-import info from "./info";
-import icon from "./icon";
+import list from "./list.js";
+import update from "./update.js";
+import info from "./info.js";
+import icon from "./icon.js";
 
 const extensionRouter = new Hono();
 

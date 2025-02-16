@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 
-import list from "./list";
-import add from "./add";
+import list from "./list.js";
+import add from "./add.js";
 
 const categoryRouter = new Hono();
 

@@ -5,15 +5,15 @@ function add(extensionId, bookId, volumeId, chapterId, title, number, read) {
     `INSERT INTO chapters (volume_id, remote_id, title, number, read)
     VALUES (
       (
-        SELECT id FROM volumes WHERE remote_id = ?3 AND book_id = (
-          SELECT id FROM books WHERE remote_id = ?2 AND extension_id = (
-            SELECT id FROM extensions WHERE remote_id = ?1
+        SELECT id FROM volumes WHERE remote_id = ? AND book_id = (
+          SELECT id FROM books WHERE remote_id = ? AND extension_id = (
+            SELECT id FROM extensions WHERE remote_id = ?
           )
         )
       ),
-      ?4, ?5, ?6, ?7
+      ?, ?, ?, ?
     );`, 
-    [extensionId, bookId, volumeId, chapterId, title, number, read]
+    [volumeId, bookId, extensionId, chapterId, title, number, read]
   );
 }
 

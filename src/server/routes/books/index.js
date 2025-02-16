@@ -1,10 +1,10 @@
 import { Hono } from "hono";
 
-import list from "./list";
-import chapters from "./chapters";
-import content from "./content";
-import icon from "./icon";
-import info from "./info";
+import list from "./list.js";
+import chapters from "./chapters.js";
+import content from "./content.js";
+import icon from "./icon.js";
+import info from "./info.js";
 
 const booksRouter = new Hono();
 

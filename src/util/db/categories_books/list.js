@@ -5,7 +5,7 @@ function list(categoryId) {
     `SELECT books.remote_id AS id, extensions.remote_id AS extension_id, books.title FROM books 
     JOIN categories_books ON books.id = categories_books.book_id
     JOIN extensions ON books.extension_id = extensions.id
-    WHERE categories_books.category_id = ?1 ORDER BY books.id;`, 
+    WHERE categories_books.category_id = ? ORDER BY books.id;`, 
     [categoryId]
   );
 }

@@ -14,6 +14,7 @@ const dir = {
 
 dir.src.core = (...path) => dir.src("core", ...path);
 dir.src.server = (...path) => dir.src("server", ...path);
+dir.src.server = (...path) => dir.src("server", ...path);
 dir.src.util = (...path) => dir.src("util", ...path);
 
 dir.config.cache = (...path) => dir.config("cache", ...path);
