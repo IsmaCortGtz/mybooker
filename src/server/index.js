@@ -34,4 +34,5 @@ app.notFound(client);
 export default (port) => Bun.serve({
   fetch: app.fetch,
   port: port,
+  idleTimeout: 255
 });

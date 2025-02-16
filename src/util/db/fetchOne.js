@@ -1,9 +1,9 @@
 import db from "#i/util/db";
 
-function fetchOne(sql, params = {}) {
+function fetchOne(sql, params = {}, database = null) {
   return new Promise((resolve, reject) => {
     try {
-      const query = db().query(sql);
+      const query = db(database).query(sql);
       const result =  query.get(params);
       resolve(result);
     } catch(err) {

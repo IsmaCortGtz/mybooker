@@ -2,11 +2,10 @@ import fetchAll from '#f/util/db/fetchAll';
 
 function list(extensionId) {
   return fetchAll(
-    `SELECT remote_id AS id, extension_id, title, cover, state, rate
-    FROM books WHERE extension_id = (
-      SELECT id FROM extensions WHERE remote_id = @extensionId
-    ) ORDER BY title;`, 
-    { extensionId }
+    `SELECT remote_id AS id, title, cover, state, rate
+    FROM books ORDER BY title;`, 
+    {},
+    extensionId
   );
 }
 

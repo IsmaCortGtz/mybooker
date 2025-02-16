@@ -1,7 +1,7 @@
 import fetchAll from '#f/util/db/fetchAll';
 
 function list() {
-  return fetchAll("SELECT remote_id AS id, name, background, foreground, icon FROM extensions;");
+  return fetchAll("SELECT * FROM extensions;");
 }
 
 export default list;

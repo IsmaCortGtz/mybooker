@@ -1,16 +1,15 @@
 import run from '#f/util/db/run';
 
-function updateContent(extensionId, bookId, volumeId, chapterId, content) {
+function updateContent(extensionId, bookId, volumeId, chapterId, downloaded) {
   return run(
-    `UPDATE chapters SET content = @content 
+    `UPDATE chapters SET downloaded = @downloaded 
     WHERE remote_id = @chapterId AND volume_id = (
       SELECT id FROM volumes WHERE remote_id = @volumeId AND book_id = (
-        SELECT id FROM books WHERE remote_id = @bookId AND extension_id = (
-          SELECT id FROM extensions WHERE remote_id = @extensionId
-        )
+        SELECT id FROM books WHERE remote_id = @bookId
       )
     );`, 
-    { extensionId, bookId, volumeId, chapterId, content }
+    { bookId, volumeId, chapterId, downloaded },
+    extensionId
   );
 }
 

@@ -23,7 +23,6 @@ async function getChapters(extensionId, bookId) {
   // Get book content from the extension
   const bookContent = await extensionRun(extensionId, extensionActions.GET_BOOK, bookId);
   if (!bookContent) return null;
-  console.log(bookContent[0].chapters);
 
   // Add new volumes and chapters to the database
   for (const volume of bookContent) {
@@ -32,7 +31,7 @@ async function getChapters(extensionId, bookId) {
 
     // Add chapters to the database
     for (const chapter of volume.chapters) {
-      await addChapter(extensionId, bookId, volume.id, chapter.id, chapter.title, chapter.number, chapter.read);
+      await addChapter(extensionId, bookId, volume.id, chapter.id, chapter.title, chapter.number, chapter.downloaded, chapter.read);
     }
   }
 

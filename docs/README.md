@@ -40,7 +40,7 @@ Extensions and the app will return the whole content divided with volumes
         title: "Chapter title",
         number: "1", // String
         read: false, // If from extension always false
-        content: false // If content is in the database (for extensions always should be false).
+        downloaded: false // If content is already downloaded (for extensions always should be false).
       },
       {...}
     ]

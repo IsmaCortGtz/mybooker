@@ -9,12 +9,11 @@ function init(db) {
       remote_id TEXT NOT NULL,
       title TEXT NOT NULL,
       number TEXT NOT NULL,
-      content TEXT,
+      downloaded INTEGER NOT NULL,
       read INTEGER NOT NULL,
       UNIQUE (volume_id, remote_id),
       FOREIGN KEY (volume_id) REFERENCES volumes (id)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE
+      ON DELETE CASCADE ON UPDATE CASCADE
     );`
   );
 }

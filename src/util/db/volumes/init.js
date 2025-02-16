@@ -11,8 +11,7 @@ function init(db) {
       number TEXT NOT NULL,
       UNIQUE (book_id, remote_id),
       FOREIGN KEY (book_id) REFERENCES books (id)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE
+      ON DELETE CASCADE ON UPDATE CASCADE
     );`
   );
 }

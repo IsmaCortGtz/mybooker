@@ -16,23 +16,6 @@ const databases = {
   extension: {},
 };
 
-// Open the database only once
-(() => {
-  if (databases.app) return;
-  fs.mkdirSync(dir.config.db(), { recursive: true });
-  const dbPath = dir.config.db("app.db");
-  databases.app = new Database(dbPath, { strict: true });
-
-  // Initialize the database
-  initExtensions(db);
-  initBooks(db);
-  initVolumes(db);
-  initChapters(db);
-  initFiles(db);
-  initCategories(db);
-  initCategoriesBooks(db);
-})();
-
 
 // Export the database object
 export default function db(name = null) {
@@ -40,10 +23,22 @@ export default function db(name = null) {
   fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 
   if (!name) {
-    if (!databases.app) databases.app = new Database(dbPath, { strict: true });
+    if (!databases.app) {
+      databases.app = new Database(dbPath, { strict: true });
+      initExtensions(databases.app);
+      initCategories(databases.app);
+      initCategoriesBooks(databases.app);
+    }
+
     return databases.app;
   }
 
-  if (!databases.extension[name]) databases.extension[name] = new Database(dbPath, { strict: true });
+  if (!databases.extension[name]) {
+    databases.extension[name] = new Database(dbPath, { strict: true });
+    initBooks(databases.extension[name]);
+    initVolumes(databases.extension[name]);
+    initChapters(databases.extension[name]);
+    initFiles(databases.extension[name]);
+  }
   return databases.extension[name];
 }

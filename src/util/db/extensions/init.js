@@ -4,8 +4,7 @@ function init(db) {
   return sqliteInit(
     db,
     `CREATE TABLE IF NOT EXISTS extensions (
-      id INTEGER PRIMARY KEY,
-      remote_id TEXT UNIQUE NOT NULL,
+      id TEXT PRIMARY KEY NOT NULL,
       name TEXT NOT NULL,
       background TEXT,
       foreground TEXT,

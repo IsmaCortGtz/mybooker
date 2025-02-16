@@ -5,16 +5,11 @@ function init(db) {
     db,
     `CREATE TABLE IF NOT EXISTS books (
       id INTEGER PRIMARY KEY,
-      extension_id INTEGER NOT NULL,
-      remote_id TEXT NOT NULL,
+      remote_id TEXT NOT NULL UNIQUE,
       title TEXT NOT NULL,
       cover TEXT NOT NULL,
       state INTEGER NOT NULL,
-      rate REAL NOT NULL,
-      FOREIGN KEY (extension_id) REFERENCES extensions (id)
-      ON DELETE CASCADE 
-      ON UPDATE CASCADE,
-      UNIQUE (extension_id, remote_id)
+      rate REAL NOT NULL
     );`
   );
 }

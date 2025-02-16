@@ -1,19 +1,18 @@
 import run from '#f/util/db/run';
 
-function add(extensionId, bookId, volumeId, chapterId, title, number, read) {
+function add(extensionId, bookId, volumeId, chapterId, title, number, downloaded, read) {
   return run(
-    `INSERT INTO chapters (volume_id, remote_id, title, number, read)
+    `INSERT INTO chapters (volume_id, remote_id, title, number, downloaded, read)
     VALUES (
       (
         SELECT id FROM volumes WHERE remote_id = @volumeId AND book_id = (
-          SELECT id FROM books WHERE remote_id = @bookId AND extension_id = (
-            SELECT id FROM extensions WHERE remote_id = @extensionId
-          )
+          SELECT id FROM books WHERE remote_id = @bookId
         )
       ),
-      @chapterId, @title, @number, @read
+      @chapterId, @title, @number, @downloaded, @read
     );`, 
-    { extensionId, bookId, volumeId, chapterId, title, number, read }
+    { bookId, volumeId, chapterId, title, number, downloaded, read },
+    extensionId
   );
 }
 

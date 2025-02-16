@@ -5,7 +5,7 @@
   "main": "src/start.js",
   "scripts": {
     "start": "bun src/start.js",
-    "dev": "bun --watch src/start.js",
+    "dev": "bun --watch src/start.js --dev",
     "build": "bun build.js"
   },
   "imports": {
