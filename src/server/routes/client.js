@@ -1,8 +1,5 @@
-import fs from 'node:fs';
-import dir from '#i/util/dir';
+import htmlString from '../dist/index.html' with { type: 'text' };
 
-const htmlString = fs.readFileSync(dir.src.server('dist/index.html'), 'utf8');
-
-export default function clien(c) {
+export default function client(c) {
   return c.html(htmlString);
 }

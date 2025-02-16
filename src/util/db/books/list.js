@@ -4,9 +4,9 @@ function list(extensionId) {
   return fetchAll(
     `SELECT remote_id AS id, extension_id, title, cover, state, rate
     FROM books WHERE extension_id = (
-      SELECT id FROM extensions WHERE remote_id = ?
+      SELECT id FROM extensions WHERE remote_id = @extensionId
     ) ORDER BY title;`, 
-    [extensionId]
+    { extensionId }
   );
 }
 

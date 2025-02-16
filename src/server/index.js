@@ -1,6 +1,5 @@
 // Dependencies
 import { Hono } from 'hono';
-import { serve } from '@hono/node-server'
 import { cors } from 'hono/cors'
 import { trimTrailingSlash } from 'hono/trailing-slash';
 
@@ -32,7 +31,7 @@ app.get("/", client);
 app.notFound(client);
 
 // Start server
-export default (port) => serve({
+export default (port) => Bun.serve({
   fetch: app.fetch,
   port: port,
 });

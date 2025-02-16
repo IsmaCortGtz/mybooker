@@ -1,5 +1,6 @@
-import Database from 'better-sqlite3';
+import { Database } from "bun:sqlite";
 import fs from "node:fs";
+import path from "node:path";
 import dir from "#i/util/dir";
 
 import initExtensions from "#f/util/db/extensions/init";
@@ -10,28 +11,39 @@ import initFiles from "#f/util/db/files/init";
 import initCategories from "#f/util/db/categories/init";
 import initCategoriesBooks from "#f/util/db/categories_books/init";
 
-const data = {
-  alreadyOpen: false,
-  db: null
+const databases = {
+  app: null,
+  extension: {},
 };
 
 // Open the database only once
 (() => {
-  if (data.alreadyOpen) return;
+  if (databases.app) return;
   fs.mkdirSync(dir.config.db(), { recursive: true });
-  const dbPath = dir.config.db("config-test.db");
-  data.db = new Database(dbPath);
-  data.alreadyOpen = true;
+  const dbPath = dir.config.db("app.db");
+  databases.app = new Database(dbPath, { strict: true });
 
   // Initialize the database
-  initExtensions(data.db);
-  initBooks(data.db);
-  initVolumes(data.db);
-  initChapters(data.db);
-  initFiles(data.db);
-  initCategories(data.db);
-  initCategoriesBooks(data.db);
+  initExtensions(db);
+  initBooks(db);
+  initVolumes(db);
+  initChapters(db);
+  initFiles(db);
+  initCategories(db);
+  initCategoriesBooks(db);
 })();
 
+
 // Export the database object
-export default data.db;
+export default function db(name = null) {
+  const dbPath = dir.config.db(name ? `extensions/${name}.db` : "app.db");
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+
+  if (!name) {
+    if (!databases.app) databases.app = new Database(dbPath, { strict: true });
+    return databases.app;
+  }
+
+  if (!databases.extension[name]) databases.extension[name] = new Database(dbPath, { strict: true });
+  return databases.extension[name];
+}

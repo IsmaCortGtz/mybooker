@@ -1,9 +1,9 @@
 import db from "#i/util/db";
 
-function run(sql, params = []) {
+function run(sql, params = {}) {
   return new Promise((resolve, reject) => {
     try {
-      db.prepare(sql).run(...params);
+      db().query(sql).run(params);
       resolve(true);
     } catch(error) {
       reject(error);
