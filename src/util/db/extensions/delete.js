@@ -1,4 +1,4 @@
-import run from "#l/util/db/run";
+import run from '#f/util/db/run';
 
 function remove(extensionId) {
   return run(

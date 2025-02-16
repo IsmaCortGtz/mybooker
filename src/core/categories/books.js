@@ -1,5 +1,5 @@
-import findCategory from "#l/util/db/categories/find";
-import listBooks from "#l/util/db/categories_books/list";
+import findCategory from "#f/util/db/categories/find";
+import listBooks from "#f/util/db/categories_books/list";
 
 async function list(categoryName) {
   const categoryId = await findCategory(categoryName);

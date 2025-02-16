@@ -1,4 +1,4 @@
-import bookChapters from "#l/core/books/chapters";
+import bookChapters from "#f/core/books/chapters";
 
 async function chapters(c) {
     const chapters = await bookChapters(c.req.param("extensionId"), c.req.param("bookId"));

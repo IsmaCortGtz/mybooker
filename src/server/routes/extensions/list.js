@@ -1,4 +1,4 @@
-import extensionList from "#l/core/extensions/list";
+import extensionList from "#f/core/extensions/list";
 
 async function list(c) {
     const extensions = await extensionList();

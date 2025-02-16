@@ -1,11 +1,11 @@
-import extensionRun from "#l/util/extensions/run";
-import extensionActions from "#l/util/extensions/actions";
+import extensionRun from "#f/util/extensions/run";
+import extensionActions from "#f/util/extensions/actions";
 
-import addVolume from "#l/util/db/volumes/add";
-import addChapter from "#l/util/db/chapters/add";
+import addVolume from "#f/util/db/volumes/add";
+import addChapter from "#f/util/db/chapters/add";
 
-import volumeListDB from "#l/util/db/volumes/list";
-import chapterListDB from "#l/util/db/chapters/list";
+import volumeListDB from "#f/util/db/volumes/list";
+import chapterListDB from "#f/util/db/chapters/list";
 
 
 async function getChapters(extensionId, bookId) {
@@ -23,6 +23,7 @@ async function getChapters(extensionId, bookId) {
   // Get book content from the extension
   const bookContent = await extensionRun(extensionId, extensionActions.GET_BOOK, bookId);
   if (!bookContent) return null;
+  console.log(bookContent[0].chapters);
 
   // Add new volumes and chapters to the database
   for (const volume of bookContent) {

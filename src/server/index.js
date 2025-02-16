@@ -4,16 +4,16 @@ import { cors } from 'hono/cors'
 import { trimTrailingSlash } from 'hono/trailing-slash';
 
 // Preact imports
-import client from '#l/server/routes/client';
+import client from '#f/server/routes/client';
 
 // Hono app
 const app = new Hono();
 
 // Routers
-import extensionsRouter from './routes/extensions';
-import booksRouter from './routes/books';
-import libraryRouter from './routes/library';
-import filesRouter from './routes/files';
+import extensionsRouter from '#i/server/routes/extensions';
+import booksRouter from '#i/server/routes/books';
+import libraryRouter from '#i/server/routes/library';
+import filesRouter from '#i/server/routes/files';
 
 // Middlewares
 app.use(cors());

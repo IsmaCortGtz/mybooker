@@ -1,4 +1,4 @@
-import extensionInfo from "#l/core/extensions/info";
+import extensionInfo from "#f/core/extensions/info";
 
 async function info(c) {
   const id = c.req.param("id");

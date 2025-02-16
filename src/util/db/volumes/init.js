@@ -1,4 +1,4 @@
-import sqliteInit from "#l/util/db/init";
+import sqliteInit from '#f/util/db/init';
 
 function init(db) {
   return sqliteInit(

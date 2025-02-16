@@ -1,4 +1,4 @@
-import bookInfo from '#l/core/books/info';
+import bookInfo from '#f/core/books/info';
 
 async function info(c) {
   const book = await bookInfo(c.req.param("extensionId"), c.req.param("bookId"));

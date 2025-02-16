@@ -1,8 +1,8 @@
-import extensionRun from "#l/util/extensions/run";
-import extensionActions from "#l/util/extensions/actions";
+import extensionRun from "#f/util/extensions/run";
+import extensionActions from "#f/util/extensions/actions";
 
-import getContentDb from "#l/util/db/chapters/content";
-import setContentDb from "#l/util/db/chapters/setContent";
+import getContentDb from "#f/util/db/chapters/content";
+import setContentDb from "#f/util/db/chapters/setContent";
 
 async function getContent(extensionId, bookId, volumeId, chapterId) {
   const chapterContentDb = await getContentDb(extensionId, bookId, volumeId, chapterId);

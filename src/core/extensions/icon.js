@@ -1,5 +1,5 @@
-import getIcon from "#l/util/db/extensions/getIcon";
-import dir from "#l/util/dir";
+import getIcon from "#f/util/db/extensions/getIcon";
+import dir from "#i/util/dir";
 
 async function getIconPath(id) {
     const icon = await getIcon(id);

@@ -1,11 +1,11 @@
 import fs from "node:fs";
-import dir from "#l/util/dir";
+import dir from "#i/util/dir";
 
-import extensionListDb from "#l/util/db/extensions/list";
-import extensionAdd from "#l/util/db/extensions/add";
-import extensionDelete from "#l/util/db/extensions/delete";
+import extensionListDb from "#f/util/db/extensions/list";
+import extensionAdd from "#f/util/db/extensions/add";
+import extensionDelete from "#f/util/db/extensions/delete";
 
-import extensionListFs from "#l/util/extensions/list";
+import extensionListFs from "#f/util/extensions/list";
 
 async function update() {
   const dbList = await extensionListDb();

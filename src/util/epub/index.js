@@ -1,11 +1,12 @@
 import { randomUUID } from "node:crypto";
 import AdmZip from "adm-zip";
-import dir from "#l/util/dir";
+import fs from "node:fs";
+import dir from "#i/util/dir";
 
-import text from './src/template';
-import createOPF from "./src/opf";
-import createNCX from "./src/ncx";
-import createTable from "./src/tableOfContent";
+import text from '#f/util/epub/src/template';
+import createOPF from "#f/util/epub/src/opf";
+import createNCX from "#f/util/epub/src/ncx";
+import createTable from "#f/util/epub/src/tableOfContent";
 
 const CONTAINER_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
@@ -73,12 +74,14 @@ export default class EPUB {
     this.zip.addFile(`OEBPS/Text/${chapter.id}.html`, Buffer.from(text(templateData)));
   }
 
-  save(path) {
+  save(extensionId, bookId) {
     this.zip.addFile(`OEBPS/content.opf`, Buffer.from(createOPF(this.metadata)));
     this.zip.addFile(`OEBPS/toc.ncx`, Buffer.from(createNCX(this.metadata)));
     this.zip.addFile(`OEBPS/Text/table_of_content.html`, Buffer.from(createTable(this.metadata)));
 
-    const zipPath = dir.config("out", `${this.metadata.title}.epub`);
-    this.zip.writeZip(path || zipPath);
+    // Create cache directory
+    fs.mkdirSync(dir.config.cache(extensionId, bookId, "ebook"), { recursive: true });
+    const zipPath = dir.config.cache(extensionId, bookId, "ebook", `${this.metadata.title}.epub`);
+    this.zip.writeZip(zipPath);
   }
 }

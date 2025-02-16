@@ -1,10 +1,11 @@
 import fs from 'node:fs';
-import addFileDB from '#l/util/db/files/add';
 import { randomUUID } from 'node:crypto';
-import EPUB from '#l/util/epub';
-import getCover from '#l/core/books/icon';
-import getChapters from '#l/core/books/chapters';
-import getChapterContent from '#l/core/books/content';
+
+import EPUB from '#i/util/epub';
+import addFileDB from '#f/util/db/files/add';
+import getCover from '#f/core/books/icon';
+import getChapters from '#f/core/books/chapters';
+import getChapterContent from '#f/core/books/content';
 
 async function add(extensionId, bookId, volumeNumber, title, language, creator, date, firstChapterId, lastChapterId) {
   // Register file in the database
@@ -49,7 +50,7 @@ async function add(extensionId, bookId, volumeNumber, title, language, creator, 
     }
   }
   
-  book.save();
+  book.save(extensionId, bookId);
 }
 
 export default add;

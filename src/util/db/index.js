@@ -1,14 +1,14 @@
 import { Database } from "bun:sqlite";
-import dir from "#l/util/dir";
 import fs from "node:fs";
+import dir from "#i/util/dir";
 
-import initExtensions from "./extensions/init";
-import initBooks from "./books/init";
-import initVolumes from "./volumes/init";
-import initChapters from "./chapters/init";
-import initFiles from "./files/init";
-import initCategories from "./categories/init";
-import initCategoriesBooks from "./categories_books/init";
+import initExtensions from "#f/util/db/extensions/init";
+import initBooks from "#f/util/db/books/init";
+import initVolumes from "#f/util/db/volumes/init";
+import initChapters from "#f/util/db/chapters/init";
+import initFiles from "#f/util/db/files/init";
+import initCategories from "#f/util/db/categories/init";
+import initCategoriesBooks from "#f/util/db/categories_books/init";
 
 const data = {
   alreadyOpen: false,

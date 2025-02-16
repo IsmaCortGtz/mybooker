@@ -1,4 +1,4 @@
-import booksList from "#l/core/books/list";
+import booksList from "#f/core/books/list";
 
 async function list(c) {
     const books = await booksList(c.req.param("id"));

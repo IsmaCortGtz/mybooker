@@ -1,4 +1,4 @@
-import fetchAll from"#l/util/db/fetchAll";
+import fetchAll from '#f/util/db/fetchAll';
 
 function list(categoryId) {
   return fetchAll(

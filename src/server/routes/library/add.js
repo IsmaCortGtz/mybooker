@@ -1,4 +1,4 @@
-import addBooksCore from "#l/core/categories/addBook";
+import addBooksCore from "#f/core/categories/addBook";
 
 async function addBook(c) {
   const {  categoryName } = c.req.param();

@@ -1,4 +1,4 @@
-import extensionsUpdate from "#l/core/extensions/update";
+import extensionsUpdate from "#f/core/extensions/update";
 
 async function update(c) {
   await extensionsUpdate();

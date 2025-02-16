@@ -1,4 +1,4 @@
-import db from "#l/util/db";
+import db from "#i/util/db";
 
 function fetchAll(sql, params = []) {
   return new Promise((resolve, reject) => {

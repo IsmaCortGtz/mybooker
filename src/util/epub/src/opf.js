@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import dir from '#l/util/dir';
+import dir from '#i/util/dir';
 
 /*
 metadata = {

@@ -1,4 +1,4 @@
-import dir from "#l/util/dir";
+import dir from '#i/util/dir';
 
 async function getIconPath(id) {
     try {

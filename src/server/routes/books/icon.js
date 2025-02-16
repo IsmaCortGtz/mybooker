@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { lookup } from 'mime-types';
 import path from 'node:path';
-import bookIcon from '#l/core/books/icon';
+import bookIcon from '#f/core/books/icon';
 
 async function icon(c) {
   const iconPath = await bookIcon(c.req.param("extensionId"), c.req.param("bookId"));

@@ -9,20 +9,15 @@
     "build": "bun build.js"
   },
   "imports": {
-    "#l/core/*": "./src/core/*.js",
-    "#l/server": "./src/server/index.js",
-    "#l/server/*": "./src/server/*.js",
-    "#l/util/db": "./src/util/db/index.js",
-    "#l/util/dir": "./src/util/dir/index.js",
-    "#l/util/epub": "./src/util/epub/index.js",
-    "#l/util/open": "./src/util/open/index.js",
-    "#l/*": "./src/*.js"
+    "#i/*": "./src/*/index.js",
+    "#f/*": "./src/*.js"
   },
   "author": "IsmaCortGtz",
   "license": "GPL-3.0",
   "description": "",
   "dependencies": {
     "adm-zip": "^0.5.16",
+    "better-sqlite3": "^11.8.1",
     "cheerio": "^1.0.0",
     "hono": "^4.6.18",
     "mime-types": "^2.1.35",

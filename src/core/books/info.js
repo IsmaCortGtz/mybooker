@@ -1,4 +1,4 @@
-import getInfoDb from "#l/util/db/books/info";
+import getInfoDb from "#f/util/db/books/info";
 
 async function getInfo(extensionId, bookId) {
   const bookInfo = await getInfoDb(extensionId, bookId);

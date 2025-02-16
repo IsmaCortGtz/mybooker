@@ -1,4 +1,4 @@
-import chapterContent from "#l/core/books/content";
+import chapterContent from "#f/core/books/content";
 
 async function getContent(c) {
     const params = { 

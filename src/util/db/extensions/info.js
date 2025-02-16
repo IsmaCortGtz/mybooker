@@ -1,4 +1,4 @@
-import fetchOne from "#l/util/db/fetchOne";
+import fetchOne from '#f/util/db/fetchOne';
 
 function getInfo(extensionId) {
   return fetchOne(

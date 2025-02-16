@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { lookup } from 'mime-types';
 import path from 'node:path';
-import extensionIcon from '#l/core/extensions/icon';
+import extensionIcon from '#f/core/extensions/icon';
 
 async function icon(c) {
   const iconPath = await extensionIcon(c.req.param("id"));

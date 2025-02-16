@@ -1,4 +1,4 @@
-import run from "#l/util/db/run";
+import run from '#f/util/db/run';
 
 function updateContent(extensionId, bookId, volumeId, chapterId, content) {
   return run(

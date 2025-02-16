@@ -1,7 +1,7 @@
 import fs from "node:fs";
-import updateExtensions from '#l/core/extensions/update';
-import dir from "#l/util/dir";
-import open from "#l/util/open";
+import updateExtensions from '#f/core/extensions/update';
+import dir from "#i/util/dir";
+import open from "#i/util/open";
 
 // Check if config/ and extensions/ directories exists
 fs.mkdirSync(dir.extensions(), { recursive: true });
@@ -16,7 +16,7 @@ const PORT = 34567;
 const APP_URL = `http://localhost:${PORT}/`;
 
 // Start the web server
-import startHonoServer from "#l/server";
+import startHonoServer from "#i/server";
 const server = startHonoServer(PORT);
 
 console.log(`Server started on ${APP_URL}`);

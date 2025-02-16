@@ -1,5 +1,4 @@
-import path from 'node:path';
-import dir from "#l/util/dir";
+import dir from '#i/util/dir';
 
 async function info(id) {
   try {

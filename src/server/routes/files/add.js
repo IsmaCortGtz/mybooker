@@ -1,4 +1,4 @@
-import addFilesCore from "#l/core/files/add";
+import addFilesCore from "#f/core/files/add";
 
 async function addFile(c) {
   const { 

@@ -1,5 +1,5 @@
-import getCoverDb from "#l/util/db/books/getCover";
-import dir from "#l/util/dir";
+import getCoverDb from "#f/util/db/books/getCover";
+import dir from "#i/util/dir";
 
 async function getCover(extensionId, bookId) {
   const bookCover = await getCoverDb(extensionId, bookId);

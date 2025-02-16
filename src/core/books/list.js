@@ -1,13 +1,13 @@
 import fs from "node:fs";
-import dir from "#l/util/dir";
 import { pipeline } from "node:stream/promises";
 import mime from "mime-types";
+import dir from "#i/util/dir";
 
-import booksList from "#l/util/db/books/list";
-import dbAddBook from "#l/util/db/books/add";
+import booksList from "#f/util/db/books/list";
+import dbAddBook from "#f/util/db/books/add";
 
-import extensionRun from "#l/util/extensions/run";
-import extensionActions from "#l/util/extensions/actions";
+import extensionRun from "#f/util/extensions/run";
+import extensionActions from "#f/util/extensions/actions";
 
 /**
  * List books in extension

@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import vm from "node:vm";
-import dir from "#l/util/dir";
+import dir from '#i/util/dir';
 
-import stringifyParam from "./src/stringifyParam";
-import loadCode from "./src/loadCode";
-import loadDependencies from "./src/loadDependencies";
+import stringifyParam from "#f/util/extensions/src/stringifyParam";
+import loadCode from "#f/util/extensions/src/loadCode";
+import loadDependencies from "#f/util/extensions/src/loadDependencies";
 
 async function run(extensionName, action, ...args) {
   try {
