@@ -1,19 +1,29 @@
+import fs from "node:fs";
 import extensionRun from "#f/util/extensions/run";
 import extensionActions from "#f/util/extensions/actions";
+import isDownloadedDb from "#f/util/db/chapters/isDownloaded";
+import dir from "#i/util/dir";
 
-import getContentDb from "#f/util/db/chapters/content";
-import setContentDb from "#f/util/db/chapters/setContent";
 
-async function getContent(extensionId, bookId, volumeId, chapterId) {
-  const chapterContentDb = await getContentDb(extensionId, bookId, volumeId, chapterId);
-  if (!!chapterContentDb) return chapterContentDb;
+export default async function getContent(extensionId, bookId, volumeId, chapterId) {
+  const downloaded = await isDownloadedDb(extensionId, bookId, volumeId, chapterId);
+  const content = getFsContent(extensionId, bookId, volumeId, chapterId);
+  if (downloaded && content) return content;
 
   const chapterContent = await extensionRun(extensionId, extensionActions.GET_CHAPTER, bookId, volumeId, chapterId)
-  if (!chapterContent) return null;
+  if (!chapterContent) throw new Error("Chapter not found in extension");
 
-  // Save the content in the database
-  await setContentDb(extensionId, bookId, volumeId, chapterId, chapterContent);
+  if (downloaded) {
+    fs.mkdirSync(dir.config.cache(extensionId, bookId, "content", volumeId), { recursive: true });
+    fs.writeFileSync(dir.config.cache(extensionId, bookId, "content", volumeId, `${chapterId}.html`), chapterContent, { encoding: "utf8" });
+  }
+
   return chapterContent;
 }
 
-export default getContent;
+
+function getFsContent(extensionId, bookId, volumeId, chapterId) {
+  const contentPath = dir.config.cache(extensionId, bookId, "content", volumeId, `${chapterId}.html`);
+  if (!fs.existsSync(contentPath)) return null;
+  return fs.readFileSync(contentPath, "utf8");
+}

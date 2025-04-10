@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { apiURL } from '@/utils/API';
+import API from '@/utils/API';
 
 import Header from "@/components/Header";
 
@@ -12,7 +12,7 @@ export default function Library() {
   const [booksList, setBooksList] = useState([]);
 
   useEffect(() => {
-    fetch(`${apiURL}/api/library/list/Default`)
+    fetch(`${API.url}/library/list/Default`)
       .then((res) => res.json())
       .then((data) => setBooksList(data));
   }, []);

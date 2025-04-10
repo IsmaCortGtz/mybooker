@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'preact/hooks';
 import { Router, route } from 'preact-router';
-import { apiURL, post } from '@/utils/API';
+import API from '@/utils/API';
 
 import BookChapters from './Chapters';
 import BookFiles from './Files';
@@ -22,6 +22,7 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
   const [loadingMessage, setLoadingMessage] = useState("Descargando contenido");
   const [bookInfo, setBookInfo] = useState({});
   const [bookContent, setBookContent] = useState([]);
+  const [filesList, setFilesList] = useState([]);
   const [checkboxSelected, setCheckboxSelected] = useState([]);
 
   const loadingModal = useRef(null);
@@ -32,17 +33,14 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
       startLoadingModal("Descargando contenido");
     }, 50);
 
-    fetch(`${apiURL}/api/books/list/${extensionId}/${bookId}`)
-      .then(res => res.json())
-      .then(data => {
-        clearTimeout(showModal);
-        setBookContent(data);
-        loadingModal.current.close();
-      });
+    API.get(`/books/list/${extensionId}/${bookId}`, (data) => {
+      clearTimeout(showModal);
+      setBookContent(data);
+      loadingModal.current.close();
+    });
 
-    fetch(`${apiURL}/api/books/info/${extensionId}/${bookId}`)
-      .then(res => res.json())
-      .then(data => setBookInfo(data));
+    API.get(`/books/info/${extensionId}/${bookId}`, (data) => setBookInfo(data))
+    API.get(`/files/list/${extensionId}/${bookId}`, (data) => setFilesList(data));
   }, []);
 
 
@@ -53,7 +51,7 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
 
 
 
-  const onCreateBook = (event) => {
+  const onCreateBook = async (event) => {
     event.preventDefault();
     const datos = {
       extensionId,
@@ -68,10 +66,11 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
     }
 
     startLoadingModal("Creando libro");
-    post("/api/files/add", datos).then(() => {
+    API.post("/files/add", datos, () => {
       loadingModal.current.close();
       modalRef.current.close();
       setCheckboxSelected([]);
+      API.get(`/files/list/${extensionId}/${bookId}`, (data) => setFilesList(data));
     });
   };
 
@@ -110,11 +109,11 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
           <div className='ceate-book-cover-container'>
             <img
               class="create-book-cover"
-              src={`${apiURL}/api/books/icon/${extensionId}/${bookId}`}
+              src={`${API.url}/books/icon/${extensionId}/${bookId}`}
               alt={bookInfo.id}
             />
             <div className='create-book-cover-inputs'>
-              <Input label="Titulo" name="title" value={bookInfo.title} required />
+              <Input label="Titulo" name="title" value={`${bookInfo.title} - Volumen 1`} required />
               <Input label="Numero" type='number' name="number" placeholder={"ex. 1"} value={1} required />
               <p className='create-book-chapters-info'>Usando capitulos '{checkboxSelected[0]?.title}' a '{checkboxSelected[1]?.title || checkboxSelected[0]?.title}'</p>
             </div>
@@ -128,7 +127,8 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
 
       <Header goBack >
         <Button title="Acción" Icon={Dots} dropdown >
-            <Dropdown.Item 
+            <Dropdown.Item
+              disabled={pageTab === "files"}
               Icon={SelectAll} 
               label="Seleccionar todo"
               onClick={() => {
@@ -138,18 +138,18 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
               }}
             />
             <Dropdown.Item 
-              disabled={checkboxSelected.length === 0} 
+              disabled={checkboxSelected.length === 0 || pageTab === "files"} 
               Icon={Deselect} 
               label="Deseleccionar"
               onClick={() => setCheckboxSelected([])}
             />
             <Dropdown.Item 
-              disabled={checkboxSelected.length === 0 || true} 
+              disabled={checkboxSelected.length === 0 || pageTab === "files" || true } 
               Icon={Download} 
               label="Descargar"
             />
             <Dropdown.Item 
-              disabled={checkboxSelected.length === 0} 
+              disabled={checkboxSelected.length === 0 || pageTab === "files" } 
               Icon={Book} 
               label="Crear libro" 
               onClick={() => modalRef.current.showModal()}
@@ -169,7 +169,7 @@ export default function BookPage({ pageTab, extensionId, bookId }) {
 
         <Router>
           <BookChapters path="/book/:extensionId/:bookId" bookContent={bookContent} checkboxSelected={checkboxSelected} chapterClick={chapterClick} />
-          <BookFiles path="/book/:extensionId/:bookId/files" />
+          <BookFiles path="/book/:extensionId/:bookId/files" filesList={filesList} />
         </Router>
       </main>
     </>

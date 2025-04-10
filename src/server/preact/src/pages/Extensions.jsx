@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { apiURL } from '@/utils/API';
+import API from '@/utils/API';
 
 import Header from "@/components/Header";
 
@@ -11,7 +11,7 @@ export default function Extensions() {
   const [extensionsList, setExtensionsList] = useState([]);
 
   useEffect(() => {
-    fetch(`${apiURL}/api/extensions/list`)
+    fetch(`${API.url}/extensions/list`)
       .then((res) => res.json())
       .then((data) => setExtensionsList(data));
   }, []);

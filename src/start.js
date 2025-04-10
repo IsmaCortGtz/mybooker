@@ -5,8 +5,8 @@ import open from "#i/util/open";
 import startHonoServer from "#i/server";
 
 // Check if config/ and extensions/ directories exists
-fs.mkdirSync(dir.extensions(), { recursive: true });
 fs.mkdirSync(dir.config(), { recursive: true });
+fs.mkdirSync(dir.extensions(), { recursive: true });
 fs.mkdirSync(dir.config.cache(), { recursive: true });
 fs.mkdirSync(dir.config.db(), { recursive: true });
 

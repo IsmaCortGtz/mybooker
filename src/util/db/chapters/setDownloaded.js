@@ -1,6 +1,6 @@
 import run from '#f/util/db/run';
 
-function updateContent(extensionId, bookId, volumeId, chapterId, downloaded) {
+function setDownloaded(extensionId, bookId, volumeId, chapterId, downloaded) {
   return run(
     `UPDATE chapters SET downloaded = @downloaded 
     WHERE remote_id = @chapterId AND volume_id = (
@@ -13,4 +13,4 @@ function updateContent(extensionId, bookId, volumeId, chapterId, downloaded) {
   );
 }
 
-export default updateContent;
+export default setDownloaded;

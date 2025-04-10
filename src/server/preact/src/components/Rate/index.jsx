@@ -1,15 +1,14 @@
-import IconStar from '@/components/icons/Star';
-
+import { Star } from '@/components/icons';
 import './styles.css';
 
 export default function Rate({ rate = 0 }) {
   return (
     <div className='rate-container'>
-      <IconStar percentage={rate} />
-      <IconStar percentage={rate - 1} />
-      <IconStar percentage={rate - 2} />
-      <IconStar percentage={rate - 3} />
-      <IconStar percentage={rate - 4} />
+      <Star percentage={rate} />
+      <Star percentage={rate - 1} />
+      <Star percentage={rate - 2} />
+      <Star percentage={rate - 3} />
+      <Star percentage={rate - 4} />
       <span className='rate-text'>({rate})</span>
     </div>
   );

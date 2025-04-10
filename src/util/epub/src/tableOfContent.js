@@ -1,4 +1,4 @@
-import dir from '#f/util/epub/src/template';
+import text from '#f/util/epub/src/template';
 
 /*
 metadata = {

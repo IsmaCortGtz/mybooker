@@ -1,9 +1,9 @@
 import "./styles.css";
 
-export default function IconStar({ percentage = 1 }) {
+export default function IconStar({ percentage = 1, background = "grey", foreground = "yellow" }) {
   // Calculamos el porcentaje de la estrella que debe estar llena
   const fillPercentage = Math.max(0, Math.min(percentage, 1)) * 100;
-  const gradientId = `gradient-${fillPercentage}`;
+  const gradientId = `IconStart-gradient-${fillPercentage}`;
 
   return (
     <svg
@@ -16,8 +16,8 @@ export default function IconStar({ percentage = 1 }) {
     >
       <defs>
         <linearGradient id={gradientId}>
-          <stop offset={`${fillPercentage}%`} stop-color="yellow"/>
-          <stop offset={`${fillPercentage}%`} stop-color="grey"/>
+          <stop offset={`${fillPercentage}%`} stop-color={foreground}/>
+          <stop offset={`${fillPercentage}%`} stop-color={background}/>
         </linearGradient>
       </defs>
       <path

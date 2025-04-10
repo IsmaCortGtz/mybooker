@@ -1,4 +1,4 @@
-import sqliteInit from '#f/util/db/init';
+import sqliteInit from "#f/util/db/init";
 
 function init(db) {
   return sqliteInit(
@@ -15,18 +15,14 @@ function init(db) {
       cover TEXT,
       first_chapter_id INTEGER NOT NULL,
       last_chapter_id INTEGER NOT NULL,
-      UNIQUE (volume, book_id),
       FOREIGN KEY (book_id) REFERENCES books (id)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE,
+      ON DELETE CASCADE ON UPDATE CASCADE,
       FOREIGN KEY (first_chapter_id) REFERENCES chapters (id)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE,
+      ON DELETE CASCADE ON UPDATE CASCADE,
       FOREIGN KEY (last_chapter_id) REFERENCES chapters (id)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE
+      ON DELETE CASCADE ON UPDATE CASCADE
     );`
   );
 }
 
-export default init; 
+export default init;

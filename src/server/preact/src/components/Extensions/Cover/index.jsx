@@ -1,4 +1,4 @@
-import { apiURL } from '@/utils/API';
+import API from '@/utils/API';
 import './styles.css';
 
 export default function Cover ({ id, name = "Unknow", background, foreground, icon }) {
@@ -10,7 +10,7 @@ export default function Cover ({ id, name = "Unknow", background, foreground, ic
     <a className="Extension cover-container" title={name} style={style} href={`/extensions/${id}`}>
       {icon ? (
         <img
-          src={`${apiURL}/api/extensions/icon/${id}`}
+          src={`${API.url}/extensions/icon/${id}`}
           alt={name}
           loading="lazy"
         />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
-import { apiURL } from '@/utils/API';
+import API from '@/utils/API';
 
 import { Heart } from '@/components/icons';
 import Rate from "@/components/Rate";
@@ -8,7 +8,7 @@ import './styles.css';
 
 export default function BookHeader({ extensionId, bookId, bookInfo }) {
   const onAddToLibrary = () => {
-    fetch(`${apiURL}/api/library/add/Default`, {
+    fetch(`${API.url}/library/add/Default`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ extensionId, bookId })
@@ -19,13 +19,13 @@ export default function BookHeader({ extensionId, bookId, bookInfo }) {
     <header className="book-header">
       <img
         className="header-cover-background"
-        src={`${apiURL}/api/books/icon/${extensionId}/${bookId}`}
+        src={`${API.url}/books/icon/${extensionId}/${bookId}`}
         alt={bookId}
       />
       <article class="header-content-container">
         <img
           class="header-cover"
-          src={`${apiURL}/api/books/icon/${extensionId}/${bookId}`}
+          src={`${API.url}/books/icon/${extensionId}/${bookId}`}
           alt={bookId}
         />
         <div class="header-info-container">

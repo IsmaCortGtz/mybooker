@@ -1,6 +1,6 @@
 import fetchOne from '#f/util/db/fetchOne';
 
-async function getContent(extensionId, bookId, volumeId, chapterId) {
+async function getDownloaded(extensionId, bookId, volumeId, chapterId) {
   return (await fetchOne(
     `SELECT downloaded FROM chapters
     WHERE remote_id = @chapterId AND volume_id = (
@@ -13,4 +13,4 @@ async function getContent(extensionId, bookId, volumeId, chapterId) {
   ))?.downloaded;
 }
 
-export default getContent;
+export default getDownloaded;

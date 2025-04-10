@@ -1,6 +1,6 @@
 import "./styles.css";
 
-export default function IconDownload() {
+export default function IconDownload(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,8 +12,9 @@ export default function IconDownload() {
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="icon icon-tabler icons-tabler-outline icon-tabler-download"
+      className={`icon icon-tabler icons-tabler-outline icon-tabler-checks ${props.className || ""}`}
     >
+      { props.title && <title>{props.title}</title> }
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
       <path d="M7 11l5 5l5 -5" />

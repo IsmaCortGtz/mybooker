@@ -8,7 +8,7 @@ export const get = (...paths) => (
 const dir = {
     root: get,
     src: (...path) => get("src", ...path),
-    extensions: (...path) => get("extensions", ...path),
+    extensions: (...path) => get("config", "extensions", ...path),
     config: (...path) => get("config", ...path)
 };
 

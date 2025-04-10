@@ -1,16 +1,11 @@
 import { useState, useEffect, useRef } from "preact/hooks";
-import { apiURL } from "@/utils/API";
+import API from "@/utils/API";
 
 import Loader from '@/components/Loader';
 import Modal from '@/components/Modal';
 import Header from "@/components/Header";
 import { Button } from "@/components/Header/Button";
-
-import HomeIcon from "@/components/icons/Home";
-import SettingsIcon from "@/components/icons/Settings";
-import ExtensionsIcon from "@/components/icons/Extensions";
 import DotsIcon from "@/components/icons/Dots";
-
 import Container from "@/components/Books/Container";
 import Cover from "@/components/Books/Cover";
 
@@ -37,17 +32,12 @@ export default function Extensions({ extensionId }) {
       loadingModal.current.showModal();
     }, 50);
 
-    fetch(`${apiURL}/api/extensions/info/${extensionId}`)
-      .then((response) => response.json())
-      .then((data) => setExtensionInfo(data));
-
-    fetch(`${apiURL}/api/books/list/${extensionId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        clearTimeout(showModal);
-        setBooksList(data);
-        loadingModal.current.close();
-      });
+    API.get(`/extensions/info/${extensionId}`, (data) => setExtensionInfo(data));
+    API.get(`/books/list/${extensionId}`, (data) => {
+      clearTimeout(showModal);
+      setBooksList(data);
+      loadingModal.current.close();
+    });
   }, []);
   
   const [booksList, setBooksList] = useState([]);
@@ -66,7 +56,7 @@ export default function Extensions({ extensionId }) {
         <section className="extension-books-header" style={detailsStyle}>
           { 
             extensionInfo.icon 
-            ? <img src={`${apiURL}/api/extensions/icon/${extensionId}`} alt={extensionInfo.name}></img>
+            ? <img src={`${API.url}/extensions/icon/${extensionId}`} alt={extensionInfo.name}></img>
             : <h3>{extensionId}</h3>
           }
         </section>

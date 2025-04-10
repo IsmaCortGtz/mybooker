@@ -14,8 +14,8 @@ const BUILD_CONFIG = {
 if (BUILD_CONFIG.platform === "win32") BUILD_CONFIG.platform = "windows";
 process.argv.forEach((arg, i) => {
   if (arg === "--sea") BUILD_CONFIG.sea = true;
-  if (arg === "--os") BUILD_CONFIG.platform = argv[i + 1];
-  if (arg === "--arch") BUILD_CONFIG.arch = argv[i + 1];
+  if (arg === "--os") BUILD_CONFIG.platform = process.argv[i + 1];
+  if (arg === "--arch") BUILD_CONFIG.arch = process.argv[i + 1];
 });
 
 function errorMessage() {
@@ -47,7 +47,7 @@ const execSync = require("child_process").execSync;
 const COMMANDS = {
   NPM_INSTALL: "cd dist && bun install --production && cd ..",
   CREATE_BIN: `bun build --compile bun-sea-index.js --outfile dist/mybooker --target=${BUILD_CONFIG.target}`,
-  CREATE_SEA: `bun build --compile --minify --sourcemap {{ENTRY_POINT}} --outfile mybooker --target=${BUILD_CONFIG.target}`
+  CREATE_SEA: `bun build --compile --minify --sourcemap {{ENTRY_POINT}} ./src/util/open/webview.js --outfile mybooker --target=${BUILD_CONFIG.target}`
 };
 
 /**
@@ -85,6 +85,7 @@ console.log(`Using ./${BUILD_CONFIG.entrypoint} as entrypoint...`);
 if (BUILD_CONFIG.sea) {
   console.log("Building with SEA...");;
   const seaCommand = COMMANDS.CREATE_SEA.replace("{{ENTRY_POINT}}", BUILD_CONFIG.entrypoint);
+  console.log(seaCommand);
   execSync(seaCommand);
   console.log("SEA Executable created...");
   return;

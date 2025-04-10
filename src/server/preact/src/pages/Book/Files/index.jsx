@@ -1,14 +1,16 @@
-import FilesItem from "@/components/Files";
+import List from "@/components/List";
+import Item from "@/components/List/Item";
+import { File } from "@/components/icons";
 
 import "./styles.css";
 
-function BookFiles({ bookId }) {
+function BookFiles({ filesList }) {
   return (
-    <div>
-      <FilesItem title={`${bookId} - Volumen 1`} read />
-      <FilesItem title={`${bookId} - Volumen 2`} />
-      <FilesItem title={`${bookId} - Volumen 3`} />
-    </div>
+    <List>
+      {filesList.map((file) => (
+        <Item id={file.id} icon={File} title={file.title} />
+      ))}
+    </List>
   );
 }
 

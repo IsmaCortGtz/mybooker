@@ -8,20 +8,12 @@ import createOPF from "#f/util/epub/src/opf";
 import createNCX from "#f/util/epub/src/ncx";
 import createTable from "#f/util/epub/src/tableOfContent";
 
-const CONTAINER_XML = `<?xml version="1.0" encoding="UTF-8"?>
-<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
-    <rootfiles>
-        <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
-   </rootfiles>
-</container>
-`;
-
 
 export default class EPUB {
   constructor() {
     this.zip = new AdmZip();
     this.zip.addFile("mimetype", Buffer.from("application/epub+zip"));
-    this.zip.addFile("META-INF/container.xml", Buffer.from(CONTAINER_XML));
+    this.zip.addLocalFile(dir.src.util("epub", "templates", "container.xml"), "META-INF/container.xml");
     this.zip.addLocalFolder(dir.src.util("epub", "templates", "Styles"), "OEBPS/Styles");
   }
 
