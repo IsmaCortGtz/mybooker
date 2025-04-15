@@ -13,7 +13,7 @@ export default class EPUB {
   constructor() {
     this.zip = new AdmZip();
     this.zip.addFile("mimetype", Buffer.from("application/epub+zip"));
-    this.zip.addLocalFile(dir.src.util("epub", "templates", "container.xml"), "META-INF/container.xml");
+    this.zip.addLocalFile(dir.src.util("epub", "templates", "container.xml"), "META-INF");
     this.zip.addLocalFolder(dir.src.util("epub", "templates", "Styles"), "OEBPS/Styles");
   }
 
