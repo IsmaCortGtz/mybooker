@@ -1,7 +1,5 @@
 node_modules/
 dist/
-
 config/*
-extensions/*
 
 *.drawio.bkp
