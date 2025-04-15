@@ -1,32 +1,7 @@
 {
   "name": "mybooker",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "type": "module",
-  "main": "src/start.js",
-  "scripts": {
-    "start": "bun src/start.js",
-    "dev": "bun --watch src/start.js --dev",
-    "build": "bun build.js --sea"
-  },
-  "imports": {
-    "#i/*": "./src/*/index.js",
-    "#f/*": "./src/*.js"
-  },
   "author": "IsmaCortGtz",
-  "license": "GPL-3.0",
-  "description": "",
-  "dependencies": {
-    "adm-zip": "^0.5.16",
-    "cheerio": "^1.0.0",
-    "hono": "^4.6.18",
-    "mime-types": "^2.1.35",
-    "webview-bun": "^2.3.0"
-  },
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+  "license": "GPL-3.0"
 }
